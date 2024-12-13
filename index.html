@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #6af06f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .delete {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="itemInput" placeholder="Type something...">
+        <button onclick="add()">Add to Wishlist</button>
+        <div class="itemlist">
+
+        </div>
+    </div>
+    <script>
+        let Input = document.getElementById("itemInput");
+        let text = document.querySelector(".itemlist");
+        function add() {
+            if (Input.value == "") {
+                alert("bhai kuch toh likh");
+            }
+            else {
+                let newElement = document.createElement("li");
+                newElement.innerHTML = `${Input.value} "<i>click to delete</i>" "<p>Edit</p>"`;
+                text.appendChild(newElement);
+                Input.value = "";
+
+                newElement.querySelector("i").addEventListener("click", remove);
+                function remove() {
+                    newElement.remove();
+                }
+                newElement.querySelector("p").addEventListener("click", edit);
+                function edit() {
+                    newElement.editTask();
+                }
+
+
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>
